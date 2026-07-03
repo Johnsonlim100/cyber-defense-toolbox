@@ -1,0 +1,14 @@
+# Use this file (not requirements.txt) when deploying to a cloud host.
+# It pulls the CPU-only PyTorch build instead of the ~2GB CUDA build that
+# plain `pip install torch` grabs by default on Linux — CPU is all a free/
+# low-tier web service has anyway, so this keeps the build fast and small.
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+Flask==3.1.3
+flask-cors==5.0.0
+numpy==2.4.4
+scikit-learn==1.8.0
+joblib==1.5.3
+torch==2.4.1
+tldextract==5.1.2
+gunicorn==22.0.0

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Defense Toolbox</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
+    <div class="popup-shell">
+
+        <!-- Header -->
+        <div class="popup-header">
+            <div class="logo-badge"><img src="img/logo.png" alt="Logo"></div>
+            <div>
+                <h1>Cyber Defense Toolbox</h1>
+                <p>Smart browser security assistant</p>
+            </div>
+        </div>
+
+        <!-- Backend status -->
+        <div class="status-strip">
+            <span class="status-dot"></span>
+            <span id="backendStatus">Checking backend...</span>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="phishing">Phishing</button>
+            <button class="tab-btn" data-tab="password">Password</button>
+            <button class="tab-btn" data-tab="malware">Malware</button>
+        </div>
+
+        <div id="phishing" class="tab-content active">
+            <div class="card">
+                <h2>Live URL Scanner</h2>
+                <p class="card-desc">
+                    Use the button to start or stop live phishing detection.
+                </p>
+
+                <div class="timer-strip">
+                    <span class="timer-label">Session time</span>
+                    <span id="elapsedTimer" class="timer-value">00:00:00</span>
+                </div>
+
+                <div class="scan-actions">
+                    <button id="scanCurrentBtn" class="main-btn scan-toggle-btn">▶ Start Scanning</button>
+                    <button id="clearScanBtn" class="sub-btn scan-clear-btn">Clear</button>
+                </div>
+
+                <div class="result-box" style="margin-top:14px;">
+                    <span class="label">Status</span>
+                    <p id="phishingResult" class="result-text neutral">
+                        Press Start Scanning to begin live phishing detection.
+                    </p>
+                </div>
+
+                <div id="scanResultsList"></div>
+
+                <div class="result-box" style="margin-top:14px;">
+                    <span class="label">Whitelist Management</span>
+                    <p class="small-note" style="margin-bottom:10px;">
+                        Domains flagged by mistake can be trusted here and will be
+                        skipped in future scans.
+                    </p>
+                    <div class="whitelist-actions">
+                        <button id="refreshWhitelistBtn" class="whitelist-action-btn secondary">Refresh</button>
+                    </div>
+                    <input type="text" id="whitelistSearch" class="whitelist-search" placeholder="Search trusted domains…">
+                    <p id="whitelistStatus" class="small-note" style="margin-top:8px;"></p>
+                    <div id="whitelistList" class="whitelist-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="password" class="tab-content">
+            <div class="card">
+                <h2>Password Monitor</h2>
+                <p class="card-desc">
+                    Detects password strength on login forms in real time and lets
+                    you manually check or generate a secure password.
+                </p>
+
+                <div class="result-box latest-box">
+                    <span class="label">Latest detected strength</span>
+                    <p id="detectedStrengthText" class="result-text neutral">No password detected</p>
+                </div>
+
+                <label class="input-label" for="passwordInput">Manual Password Check</label>
+                <input type="password" id="passwordInput" class="text-input" placeholder="Enter password">
+                <button id="checkPasswordBtn" class="main-btn">Check Password</button>
+
+                <div class="result-box">
+                    <span class="label">Manual Check Result</span>
+                    <p id="passwordResult" class="result-text neutral">Waiting for check...</p>
+                </div>
+
+                <div class="generator-box">
+                    <span class="label">Generate Password</span>
+                    <label class="input-label" for="genLength">Password Length</label>
+                    <div class="range-row">
+                        <input type="range" id="genLength" min="8" max="24" value="12">
+                        <span id="genLengthValue">12</span>
+                    </div>
+                    <input type="text" id="generatedPassword" class="text-input" readonly placeholder="Generated password will appear here">
+                    <div class="dual-buttons">
+                        <button id="generatePasswordBtn" class="main-btn">Generate Password</button>
+                        <button id="copyPasswordBtn" class="sub-btn">Copy</button>
+                    </div>
+                    <p id="copyStatus" class="small-note"></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="malware" class="tab-content">
+            <div class="card">
+                <h2>Automatic Download Protection</h2>
+                <p class="card-desc">
+                    Every file you download is automatically scanned by the AI malware model.
+                    High-risk downloads are paused so you can decide before they run.
+                </p>
+                <div class="result-box">
+                    <span class="label">Status</span>
+                    <p id="malwareAutoStatus" class="result-text neutral">
+                        Watching downloads in the background…
+                    </p>
+                </div>
+                <div id="malwareResultsList"></div>
+                <div class="scan-actions" style="margin-top:10px;">
+                    <button id="clearMalwareBtn" class="sub-btn scan-clear-btn">Clear History</button>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top:14px;">
+                <h2>Manual File Name Scan</h2>
+                <p class="card-desc">
+                    Check any file name manually with the same AI model.
+                </p>
+                <label class="input-label" for="fileInput">File Name</label>
+                <input type="text" id="fileInput" class="text-input" placeholder="Example: setup.exe">
+                <button id="checkFileBtn" class="main-btn">Scan File Name</button>
+                <div class="result-box">
+                    <span class="label">Result</span>
+                    <p id="malwareResult" class="result-text neutral">Waiting for scan...</p>
+                    <p id="malwareReasons" class="small-note"></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

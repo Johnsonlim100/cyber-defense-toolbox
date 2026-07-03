@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Cyber Defense Toolbox",
+  "version": "1.1",
+  "description": "AI-powered phishing detection, password checker, password monitor, password generator, and malware detection extension.",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Cyber Defense Toolbox",
+    "default-icon" : "img/logo.jpeg"
+  },
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "scripting",
+    "notifications",
+    "alarms",
+    "downloads"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:5000/*",
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+      "64": "img/logo-64.png"
+      
+  }
+
+
+}
