@@ -1,6 +1,6 @@
 
 
-const API_BASE = "http://127.0.0.1:5000";
+const API_BASE = "https://cyber-defense-toolbox.onrender.com";
 
 // ── Storage keys ──────────────────────────────────────────────────────────────
 const KEY_SCAN_STATUS  = "scanStatus";   // "idle" | "active" | "stopped"

@@ -2,7 +2,7 @@
 // Detects password input fields and evaluates strength in real time
 // by calling the Flask RNN backend instead of using local heuristics.
 
-const CDT_API_BASE = "http://127.0.0.1:5000";
+const CDT_API_BASE = "https://cyber-defense-toolbox.onrender.com";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Debounce: only fire the API call after the user pauses typing (350 ms)

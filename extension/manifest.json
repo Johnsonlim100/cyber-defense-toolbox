@@ -19,6 +19,7 @@
   ],
   "host_permissions": [
     "http://127.0.0.1:5000/*",
+    "https://cyber-defense-toolbox.onrender.com/*",
     "<all_urls>"
   ],
   "content_scripts": [

@@ -1,6 +1,6 @@
 
 
-const API_BASE = "http://127.0.0.1:5000";
+const API_BASE = "https://cyber-defense-toolbox.onrender.com";
 
 // ── Shared UI state ───────────────────────────────────────────────────────────
 let scanState = {
@@ -435,6 +435,25 @@ function renderWhitelistEntries(domains) {
 }
 
 
+function markScanResultsTrusted(domain) {
+    const updated = scanState.results.map(item => {
+        if (item.domain === domain && !item.whitelisted) {
+            return {
+                ...item,
+                whitelisted: true,
+                label: 1,
+                result: "✅ Whitelisted",
+                confidence: 100,
+            };
+        }
+        return item;
+    });
+
+    scanState.results = updated;
+    chrome.storage.local.set({ scanResults: updated });
+    renderScanResults();
+}
+
 async function addDomainToWhitelist(domain) {
     const addBtn = document.getElementById("addWhitelistBtn");
     if (addBtn) addBtn.disabled = true;
@@ -448,9 +467,9 @@ async function addDomainToWhitelist(domain) {
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || "Unable to add domain");
         setWhitelistStatus(`✅ ${domain} added to whitelist.`, "safe");
+        markScanResultsTrusted(domain);
         whitelistState.currentPage = 1;
         await loadWhitelistEntries();
-        renderScanResults();
     } catch (err) {
         setWhitelistStatus(err.message, "danger");
     } finally {
