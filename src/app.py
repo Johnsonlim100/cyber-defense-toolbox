@@ -427,11 +427,7 @@ def password_check():
 
 @app.route("/api/password-verify", methods=["POST"])
 def password_verify():
-    """
-    Lightweight endpoint used by the generator.
-    Returns { "strong": true/false, "label": 0|1|2, "name": "..." }
-    so the frontend can loop until a strong password is produced.
-    """
+   
     data     = request.get_json(silent=True) or {}
     password = data.get("password", "")
 
